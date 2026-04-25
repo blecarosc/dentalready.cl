@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Intake - Nuevo Cliente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0D1B2A; color: #fff; min-height: 100vh; }
+        .container { max-width: 800px; margin: 0 auto; padding: 48px 24px; }
+        .header { text-align: center; margin-bottom: 48px; }
+        .header h1 { font-size: 32px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .header h1 span { color: #3D8B9E; }
+        .header p { color: #8A9BB0; font-size: 14px; line-height: 1.6; }
+        .section { background: #152232; border: 1px solid rgba(61,139,158,0.15); border-radius: 12px; padding: 32px; margin-bottom: 24px; }
+        .section-title { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #3D8B9E; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+        .section-title .num { width: 28px; height: 28px; background: #3D8B9E; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+        .field { margin-bottom: 20px; }
+        .field label { display: block; font-size: 13px; font-weight: 600; color: #A8B8C8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+        .field label .req { color: #3D8B9E; }
+        .field input, .field textarea, .field select { width: 100%; padding: 12px 16px; background: #0D1B2A; border: 1px solid rgba(61,139,158,0.2); color: #fff; font-family: 'Inter', sans-serif; font-size: 14px; border-radius: 6px; outline: none; transition: border-color 0.3s; }
+        .field input:focus, .field textarea:focus, .field select:focus { border-color: #3D8B9E; }
+        .field input::placeholder, .field textarea::placeholder { color: #5A6A7A; }
+        .field textarea { height: 100px; resize: vertical; }
+        .field select { cursor: pointer; }
+        .field select option { background: #0D1B2A; }
+        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .field-hint { font-size: 11px; color: #5A6A7A; margin-top: 4px; }
+        .checklist { display: flex; flex-direction: column; gap: 10px; }
+        .checklist label { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #A8B8C8; cursor: pointer; }
+        .checklist input[type="checkbox"] { accent-color: #3D8B9E; width: 16px; height: 16px; }
+        .radio-row { display: flex; flex-wrap: wrap; gap: 12px; }
+        .radio-row label { display: flex; align-items: center; gap: 6px; font-size: 14px; color: #A8B8C8; cursor: pointer; padding: 8px 16px; border: 1px solid rgba(61,139,158,0.2); border-radius: 6px; transition: all 0.3s; }
+        .radio-row label:hover { border-color: #3D8B9E; }
+        .radio-row input[type="radio"] { accent-color: #3D8B9E; }
+        .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .photo-item { background: #0D1B2A; border: 2px dashed rgba(61,139,158,0.3); border-radius: 8px; padding: 20px; text-align: center; }
+        .photo-item .photo-label { font-size: 12px; font-weight: 600; color: #3D8B9E; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .photo-item .photo-desc { font-size: 11px; color: #5A6A7A; }
+        .photo-item .photo-size { font-size: 10px; color: #3D8B9E; margin-top: 4px; }
+        .divider { height: 1px; background: rgba(61,139,158,0.1); margin: 16px 0; }
+        .btn-submit { display: block; width: 100%; padding: 16px; background: #3D8B9E; color: #fff; border: none; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; border-radius: 8px; cursor: pointer; transition: all 0.3s; margin-top: 32px; }
+        .btn-submit:hover { background: #4FA0B3; }
+        .btn-print { display: block; width: 100%; padding: 12px; background: transparent; color: #8A9BB0; border: 1px solid rgba(61,139,158,0.2); font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; border-radius: 8px; cursor: pointer; margin-top: 12px; }
+        .btn-print:hover { border-color: #3D8B9E; color: #3D8B9E; }
+        .palette-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .palette { border: 2px solid rgba(61,139,158,0.2); border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; transition: all 0.3s; }
+        .palette:hover { border-color: #3D8B9E; }
+        .palette-colors { display: flex; gap: 4px; justify-content: center; margin-bottom: 8px; }
+        .palette-colors span { width: 24px; height: 24px; border-radius: 4px; }
+        .palette-name { font-size: 10px; color: #8A9BB0; text-transform: uppercase; letter-spacing: 1px; }
+        @media (max-width: 768px) {
+            .field-row { grid-template-columns: 1fr; }
+            .photo-grid { grid-template-columns: 1fr; }
+            .palette-options { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media print {
+            body { background: #fff; color: #000; }
+            .section { border-color: #ddd; background: #f9f9f9; }
+            .section-title { color: #333; }
+            .field label { color: #333; }
+            .field input, .field textarea, .field select { background: #fff; border-color: #ccc; color: #000; }
+            .btn-submit, .btn-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>Formulario de <span>Intake</span></h1>
+            <p>Completa este formulario antes de nuestra primera reunión.<br>Mientras más información nos des, más rápido tendrás tu página lista.</p>
+        </div>
+
+        <form>
+
+            <!-- 1. DATOS PERSONALES -->
+            <div class="section">
+                <div class="section-title"><span class="num">1</span> Datos Personales</div>
+                <div class="field-row">
+                    <div class="field">
+                        <label>Nombre completo <span class="req">*</span></label>
+                        <input type="text" placeholder="Ej: Dr. Bruno Lecaros">
+                    </div>
+                    <div class="field">
+                        <label>Especialidad <span class="req">*</span></label>
+                        <input type="text" placeholder="Ej: Odontología General, Endodoncia">
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label>Título profesional</label>
+                        <input type="text" placeholder="Ej: Cirujano Dentista">
+                    </div>
+                    <div class="field">
+                        <label>Años de experiencia</label>
+                        <input type="number" placeholder="Ej: 5">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Breve descripción sobre ti <span class="req">*</span></label>
+                    <textarea placeholder="2-3 oraciones sobre tu trayectoria, enfoque y lo que te diferencia..."></textarea>
+                    <div class="field-hint">Si no tienes texto, nosotros lo redactamos por ti.</div>
+                </div>
+            </div>
+
+            <!-- 2. CONTACTO Y REDES -->
+            <div class="section">
+                <div class="section-title"><span class="num">2</span> Contacto y Redes Sociales</div>
+                <div class="field-row">
+                    <div class="field">
+                        <label>WhatsApp <span class="req">*</span></label>
+                        <input type="tel" placeholder="+56 9 1234 5678">
+                    </div>
+                    <div class="field">
+                        <label>Email de contacto <span class="req">*</span></label>
+                        <input type="email" placeholder="contacto@tuconsulta.cl">
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label>Instagram</label>
+                        <input type="text" placeholder="@tu_usuario">
+                    </div>
+                    <div class="field">
+                        <label>TikTok</label>
+                        <input type="text" placeholder="@tu_usuario">
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label>Dirección de la consulta <span class="req">*</span></label>
+                        <input type="text" placeholder="Ej: Av. Providencia 1234, Of. 567">
+                    </div>
+                    <div class="field">
+                        <label>Ciudad / Comuna <span class="req">*</span></label>
+                        <input type="text" placeholder="Ej: Providencia, Santiago">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Horario de atención <span class="req">*</span></label>
+                    <input type="text" placeholder="Ej: Lunes a Viernes 9:00 - 18:00">
+                </div>
+                <div class="field">
+                    <label>¿En qué comuna/ciudad está tu clínica? <span class="req">*</span></label>
+                    <input type="text" placeholder="Ej: Providencia, Santiago">
+                    <div class="field-hint">Importante para SEO local y posicionamiento en Google Maps.</div>
+                </div>
+            </div>
+
+            <!-- 3. SERVICIOS -->
+            <div class="section">
+                <div class="section-title"><span class="num">3</span> Servicios que Ofreces</div>
+                <p style="font-size: 13px; color: #8A9BB0; margin-bottom: 16px;">Marca todos los que apliquen:</p>
+                <div class="checklist">
+                    <label><input type="checkbox"> Odontología general (limpiezas, caries, controles)</label>
+                    <label><input type="checkbox"> Extracciones</label>
+                    <label><input type="checkbox"> Endodoncia (tratamiento de conducto)</label>
+                    <label><input type="checkbox"> Ortodoncia (brackets, alineadores)</label>
+                    <label><input type="checkbox"> Implantes dentales</label>
+                    <label><input type="checkbox"> Prótesis dental</label>
+                    <label><input type="checkbox"> Blanqueamiento dental</label>
+                    <label><input type="checkbox"> Carillas / Diseño de sonrisa</label>
+                    <label><input type="checkbox"> Armonización orofacial</label>
+                    <label><input type="checkbox"> Toxina botulínica (Botox)</label>
+                    <label><input type="checkbox"> Filler / Ácido hialurónico</label>
+                    <label><input type="checkbox"> Rinomodelación</label>
+                    <label><input type="checkbox"> PPRM (Plasma rico en plaquetas)</label>
+                    <label><input type="checkbox"> Odontopediatría</label>
+                    <label><input type="checkbox"> Urgencias dentales</label>
+                </div>
+                <div class="field" style="margin-top: 16px;">
+                    <label>Otros servicios</label>
+                    <input type="text" placeholder="Si ofreces algo que no está en la lista...">
+                </div>
+                <div class="field" style="margin-top: 16px;">
+                    <label>¿Tienes algún tratamiento estrella que quieras destacar? <span class="req">*</span></label>
+                    <input type="text" placeholder="Ej: Implantes, Endodoncia, Armonización facial...">
+                    <div class="field-hint">Este será el foco principal de tu sitio web y el que más destaquemos.</div>
+                </div>
+            </div>
+
+            <!-- 4. ESTADÍSTICAS -->
+            <div class="section">
+                <div class="section-title"><span class="num">4</span> Estadísticas (aproximadas)</div>
+                <p style="font-size: 13px; color: #8A9BB0; margin-bottom: 16px;">Estos números aparecerán en tu página. Si no estás seguro, ponemos valores estándar.</p>
+                <div class="field-row">
+                    <div class="field">
+                        <label>Pacientes atendidos</label>
+                        <input type="text" placeholder="Ej: +1500">
+                    </div>
+                    <div class="field">
+                        <label>Años de experiencia</label>
+                        <input type="text" placeholder="Ej: +5">
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label>Tasa de satisfacción</label>
+                        <input type="text" placeholder="Ej: 98%">
+                    </div>
+                    <div class="field">
+                        <label>Rating Google Maps</label>
+                        <input type="text" placeholder="Ej: 5.0">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. ESTILO VISUAL -->
+            <div class="section">
+                <div class="section-title"><span class="num">5</span> Estilo Visual</div>
+
+                <div class="field">
+                    <label>¿Qué paleta de colores prefieres?</label>
+                    <div class="palette-options" style="margin-top: 12px;">
+                        <label class="palette">
+                            <input type="radio" name="paleta" value="petroleo" style="display: none;">
+                            <div class="palette-colors">
+                                <span style="background: #0D1B2A;"></span>
+                                <span style="background: #3D8B9E;"></span>
+                                <span style="background: #C9A96E;"></span>
+                            </div>
+                            <div class="palette-name">Azul Petróleo</div>
+                        </label>
+                        <label class="palette">
+                            <input type="radio" name="paleta" value="relajante" style="display: none;">
+                            <div class="palette-colors">
+                                <span style="background: #FDF8F4;"></span>
+                                <span style="background: #D4929A;"></span>
+                                <span style="background: #9BAEBF;"></span>
+                            </div>
+                            <div class="palette-name">Tonos Relajantes</div>
+                        </label>
+                        <label class="palette">
+                            <input type="radio" name="paleta" value="elegante" style="display: none;">
+                            <div class="palette-colors">
+                                <span style="background: #FFFFFF;"></span>
+                                <span style="background: #D6E8F0;"></span>
+                                <span style="background: #0055A4;"></span>
+                            </div>
+                            <div class="palette-name">Calmado y Elegante</div>
+                        </label>
+                        <label class="palette">
+                            <input type="radio" name="paleta" value="organico" style="display: none;">
+                            <div class="palette-colors">
+                                <span style="background: #0A5C36;"></span>
+                                <span style="background: #F0ECC8;"></span>
+                                <span style="background: #F7F5EE;"></span>
+                            </div>
+                            <div class="palette-name">Elegante y Orgánico</div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field" style="margin-top: 16px;">
+                    <label>¿Tienes logo?</label>
+                    <div class="radio-row" style="margin-top: 8px;">
+                        <label><input type="radio" name="logo" value="si"> Sí, lo adjuntaré</label>
+                        <label><input type="radio" name="logo" value="texto"> No, usar mi nombre como logo</label>
+                        <label><input type="radio" name="logo" value="crear"> No, quiero que creen uno</label>
+                    </div>
+                </div>
+
+                <div class="field" style="margin-top: 16px;">
+                    <label>¿Alguna página web que te guste como referencia?</label>
+                    <input type="text" placeholder="URL o nombre del sitio que te inspira">
+                </div>
+            </div>
+
+            <!-- 6. FOTOS -->
+            <div class="section">
+                <div class="section-title"><span class="num">6</span> Fotos</div>
+                <p style="font-size: 13px; color: #8A9BB0; margin-bottom: 16px;">Envía las fotos en la mejor calidad posible. Nombra cada archivo según la descripción.</p>
+
+                <p style="font-size: 12px; font-weight: 600; color: #3D8B9E; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Fotos obligatorias</p>
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <div class="photo-label">Retrato profesional</div>
+                        <div class="photo-desc">Foto tuya con uniforme, fondo limpio</div>
+                        <div class="photo-size">Mínimo 800x1000px</div>
+                    </div>
+                    <div class="photo-item">
+                        <div class="photo-label">Foto trabajando</div>
+                        <div class="photo-desc">Atendiendo paciente o en la clínica</div>
+                        <div class="photo-size">Mínimo 800x600px</div>
+                    </div>
+                    <div class="photo-item">
+                        <div class="photo-label">Foto con paciente</div>
+                        <div class="photo-desc">Cercanía, confianza (con permiso)</div>
+                        <div class="photo-size">Mínimo 800x600px</div>
+                    </div>
+                    <div class="photo-item">
+                        <div class="photo-label">Foto de la clínica</div>
+                        <div class="photo-desc">Interior del consultorio</div>
+                        <div class="photo-size">Mínimo 800x600px</div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <p style="font-size: 12px; font-weight: 600; color: #3D8B9E; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Fotos antes/después (opcional pero recomendado)</p>
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <div class="photo-label">Caso 1 - Antes</div>
+                        <div class="photo-desc">Misma proporción que el después</div>
+                        <div class="photo-size">800x1000px recomendado</div>
+                    </div>
+                    <div class="photo-item">
+                        <div class="photo-label">Caso 1 - Después</div>
+                        <div class="photo-desc">Mismo ángulo y distancia</div>
+                        <div class="photo-size">800x1000px recomendado</div>
+                    </div>
+                    <div class="photo-item">
+                        <div class="photo-label">Caso 2 - Antes</div>
+                        <div class="photo-desc">Misma proporción que el después</div>
+                        <div class="photo-size">800x1000px recomendado</div>
+                    </div>
+                    <div class="photo-item">
+                        <div class="photo-label">Caso 2 - Después</div>
+                        <div class="photo-desc">Mismo ángulo y distancia</div>
+                        <div class="photo-size">800x1000px recomendado</div>
+                    </div>
+                </div>
+
+                <div class="field" style="margin-top: 16px;">
+                    <label>¿Cuántos casos antes/después tienes listos?</label>
+                    <select>
+                        <option value="">Selecciona...</option>
+                        <option value="0">No tengo por ahora</option>
+                        <option value="1-3">1 a 3 casos</option>
+                        <option value="4-6">4 a 6 casos</option>
+                        <option value="7+">7 o más casos</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 7. TESTIMONIOS -->
+            <div class="section">
+                <div class="section-title"><span class="num">7</span> Testimonios de Pacientes</div>
+                <p style="font-size: 13px; color: #8A9BB0; margin-bottom: 16px;">Necesitamos mínimo 3 testimonios. Si no tienes, podemos usar reseñas de Google Maps.</p>
+
+                <div class="field">
+                    <label>Testimonio 1</label>
+                    <textarea placeholder='"Lo que dijo el paciente..."'></textarea>
+                    <div class="field-row" style="margin-top: 8px;">
+                        <input type="text" placeholder="Nombre (Ej: Valentina R.)">
+                        <input type="text" placeholder="Ubicación (Ej: Las Condes, Santiago)">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Testimonio 2</label>
+                    <textarea placeholder='"Lo que dijo el paciente..."'></textarea>
+                    <div class="field-row" style="margin-top: 8px;">
+                        <input type="text" placeholder="Nombre">
+                        <input type="text" placeholder="Ubicación">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Testimonio 3</label>
+                    <textarea placeholder='"Lo que dijo el paciente..."'></textarea>
+                    <div class="field-row" style="margin-top: 8px;">
+                        <input type="text" placeholder="Nombre">
+                        <input type="text" placeholder="Ubicación">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>¿Tienes reseñas en Google Maps?</label>
+                    <div class="radio-row" style="margin-top: 8px;">
+                        <label><input type="radio" name="google" value="si"> Sí</label>
+                        <label><input type="radio" name="google" value="no"> No</label>
+                        <label><input type="radio" name="google" value="nose"> No sé</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. NOTAS -->
+            <div class="section">
+                <div class="section-title"><span class="num">8</span> Notas Adicionales</div>
+                <div class="field">
+                    <label>¿Algo más que quieras incluir en tu página?</label>
+                    <textarea placeholder="Promociones, convenios, certificaciones, idiomas, experiencia internacional, etc."></textarea>
+                </div>
+                <div class="field">
+                    <label>¿Tienes dominio web comprado?</label>
+                    <div class="radio-row" style="margin-top: 8px;">
+                        <label><input type="radio" name="dominio" value="si"> Sí (indicar cuál)</label>
+                        <label><input type="radio" name="dominio" value="no"> No, necesito uno</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Si tienes dominio, ¿cuál es?</label>
+                    <input type="text" placeholder="Ej: www.drbrunolecaros.cl">
+                </div>
+            </div>
+
+            <button type="button" class="btn-submit" onclick="alert('Formulario guardado. Envía este archivo junto con tus fotos.')">Guardar Formulario</button>
+            <button type="button" class="btn-print" onclick="window.print()">Imprimir / Guardar como PDF</button>
+
+        </form>
+    </div>
+</body>
+</html>
