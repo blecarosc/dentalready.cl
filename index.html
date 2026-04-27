@@ -155,14 +155,16 @@
         .pricing { padding: 100px 48px; }
         .pricing-label { text-align: center; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 3px; color: var(--gray); margin-bottom: 12px; }
         .pricing h2 { font-family: 'Fraunces', serif; font-size: clamp(24px, 3.5vw, 34px); font-weight: 700; text-align: center; margin-bottom: 48px; }
-        .pricing-table { width: 100%; max-width: 720px; margin: 0 auto; border-collapse: collapse; }
+        .pricing-table { width: 100%; max-width: 720px; margin: 0 auto; border-collapse: collapse; table-layout: fixed; }
+        .pricing-table col.col-desc { width: 40%; }
+        .pricing-table col.col-price { width: 30%; }
         .pricing-table th { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 16px 12px; text-align: center; border-bottom: 1px solid var(--line); color: var(--gray); }
         .pricing-table th:first-child { text-align: left; }
         .pricing-table th.col-hl { color: var(--gold); }
         .pricing-table td { font-size: 13px; padding: 14px 12px; border-bottom: 1px solid var(--line); color: var(--gray); font-weight: 300; text-align: center; }
         .pricing-table td.col-hl { color: var(--white); background: rgba(201,169,110,0.04); font-weight: 400; }
         .pricing-table td:first-child { font-weight: 500; color: var(--white); text-align: left; }
-        .pricing-ctas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 900px; margin: 24px auto 0; }
+        .pricing-ctas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 600px; margin: 24px auto 0; }
         .pricing-cta-card { text-align: center; padding: 20px; border: 1px solid var(--line); border-radius: 10px; transition: all 0.3s; }
         .pricing-cta-card:hover { border-color: rgba(201,169,110,0.3); }
         .pricing-cta-card.featured { border-color: var(--gold); }
@@ -256,6 +258,11 @@
 
         <!-- TABLA PAQUETES -->
         <table class="pricing-table">
+            <colgroup>
+                <col class="col-desc">
+                <col class="col-price">
+                <col class="col-price">
+            </colgroup>
             <thead>
                 <tr>
                     <th></th>
