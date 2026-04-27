@@ -155,12 +155,13 @@
         .pricing { padding: 100px 48px; }
         .pricing-label { text-align: center; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 3px; color: var(--gray); margin-bottom: 12px; }
         .pricing h2 { font-family: 'Fraunces', serif; font-size: clamp(24px, 3.5vw, 34px); font-weight: 700; text-align: center; margin-bottom: 48px; }
-        .pricing-table { width: 100%; max-width: 900px; margin: 0 auto; border-collapse: collapse; }
-        .pricing-table th { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 16px 12px; text-align: left; border-bottom: 1px solid var(--line); color: var(--gray); }
+        .pricing-table { width: 100%; max-width: 720px; margin: 0 auto; border-collapse: collapse; }
+        .pricing-table th { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 16px 12px; text-align: center; border-bottom: 1px solid var(--line); color: var(--gray); }
+        .pricing-table th:first-child { text-align: left; }
         .pricing-table th.col-hl { color: var(--gold); }
-        .pricing-table td { font-size: 13px; padding: 14px 12px; border-bottom: 1px solid var(--line); color: var(--gray); font-weight: 300; }
+        .pricing-table td { font-size: 13px; padding: 14px 12px; border-bottom: 1px solid var(--line); color: var(--gray); font-weight: 300; text-align: center; }
         .pricing-table td.col-hl { color: var(--white); background: rgba(201,169,110,0.04); font-weight: 400; }
-        .pricing-table td:first-child { font-weight: 500; color: var(--white); }
+        .pricing-table td:first-child { font-weight: 500; color: var(--white); text-align: left; }
         .pricing-ctas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 900px; margin: 24px auto 0; }
         .pricing-cta-card { text-align: center; padding: 20px; border: 1px solid var(--line); border-radius: 10px; transition: all 0.3s; }
         .pricing-cta-card:hover { border-color: rgba(201,169,110,0.3); }
@@ -265,15 +266,14 @@
             <tbody>
                 <tr><td>Precio</td><td class="col-hl">Desde $200.000</td><td>Desde $400.000</td></tr>
                 <tr><td>Sitio web</td><td class="col-hl">Landing completa</td><td>Multi-página + SEO</td></tr>
+                <tr><td>Dominio + hosting</td><td class="col-hl">Primer año incluido</td><td>Primer año incluido</td></tr>
                 <tr><td>Google Maps</td><td class="col-hl">✓</td><td>✓</td></tr>
                 <tr><td>Entrega</td><td class="col-hl">5–10 días</td><td>15–20 días</td></tr>
-                <tr><td>Renovación anual (año 2+)</td><td class="col-hl">$99.000</td><td>$99.000</td></tr>
                 <tr class="extra-row" style="display: none;"><td>WhatsApp Business</td><td class="col-hl">✓</td><td>✓</td></tr>
-                <tr class="extra-row" style="display: none;"><td>Dominio + hosting</td><td class="col-hl">Primer año incluido</td><td>Primer año incluido</td></tr>
                 <tr class="extra-row" style="display: none;"><td>Instagram</td><td class="col-hl">Configurado + 6 posts</td><td>Estrategia 1 mes (12 posts)</td></tr>
                 <tr class="extra-row" style="display: none;"><td>Blog</td><td class="col-hl">—</td><td>3 artículos con IA</td></tr>
                 <tr class="extra-row" style="display: none;"><td>Capacitación</td><td class="col-hl">—</td><td>Sesión 1 hora</td></tr>
-                <tr class="extra-row" style="display: none;"><td>Mantenimiento</td><td class="col-hl">$60.000/mes opcional</td><td>$100.000–130.000/mes</td></tr>
+                <tr><td>Renovación anual (año 2+)</td><td class="col-hl">$99.000</td><td>$99.000</td></tr>
             </tbody>
         </table>
         <div style="text-align: center; margin-top: 16px;">
