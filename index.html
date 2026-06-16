@@ -202,7 +202,21 @@
         .wa-float { position: fixed; bottom: 16px; right: 12px; z-index: 999; width: 46px; height: 46px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 16px rgba(37,211,102,0.3); transition: all 0.3s; }
         .wa-float:hover { transform: scale(1.08); }
         .wa-float svg { width: 24px; height: 24px; fill: #fff; }
+        /* TESTIMONIOS / RESEÑAS */
+        .testimonials { padding: 80px 48px; background: var(--bg-card); }
+        .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 760px; margin: 0 auto; align-items: stretch; }
+        .review-card { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 28px 30px; text-align: left; display: flex; flex-direction: column; }
+        .review-stars { color: var(--gold); font-size: 15px; letter-spacing: 3px; margin-bottom: 14px; }
+        .review-card p { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; font-style: italic; line-height: 1.7; color: rgba(240,245,243,0.8); margin-bottom: 16px; flex-grow: 1; }
+        .review-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: auto; }
+        .review-author { font-size: 12px; color: var(--gray); }
+        .review-author b { color: var(--white); font-weight: 500; }
+        .review-verified { font-size: 10px; color: var(--gray); white-space: nowrap; }
         @media (max-width: 768px) {
+            .testimonials { padding: 64px 20px; }
+            .reviews-grid { display: flex; grid-template-columns: none; max-width: none; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 20px 16px; margin: 0 -20px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+            .reviews-grid::-webkit-scrollbar { display: none; }
+            .review-card { flex: 0 0 82%; min-width: 82%; scroll-snap-align: center; padding: 24px; }
             nav { padding: 0 20px; }
             .nav-links { display: none; }
             .burger { display: block; }
@@ -239,7 +253,6 @@
         </button>
         <a href="#problema" onclick="document.getElementById('nav-mobile').classList.remove('open')">Por Qué</a>
         <a href="#proceso" onclick="document.getElementById('nav-mobile').classList.remove('open')">Proceso</a>
-        <a href="#casos" onclick="document.getElementById('nav-mobile').classList.remove('open')">Casos</a>
         <a href="#paquetes" onclick="document.getElementById('nav-mobile').classList.remove('open')">Paquetes</a>
         <a href="https://wa.me/56934464614?text=Hola%20Bruno%2C%20me%20interesa%20DentalReady" class="nav-cta-mobile">Hablemos</a>
     </div>
@@ -257,41 +270,25 @@
     </section>
 
     <section class="comparison"><p class="comparison-label">Agencia genérica vs DentalReady</p><div class="comparison-grid"><div class="comp-card comp-card--muted"><h3>Agencia genérica</h3><ul class="comp-list"><li><span class="ci-x">×</span> Misma plantilla para todos</li><li><span class="ci-x">×</span> No entienden el rubro dental</li><li><span class="ci-x">×</span> Presupuestos de $1-2 millones</li><li><span class="ci-x">×</span> Entrega en 4-8 semanas</li><li><span class="ci-x">×</span> Cobran extra por cada cambio</li></ul></div><div class="comp-card comp-card--accent"><h3>DentalReady</h3><ul class="comp-list"><li><span class="ci-ok">✓</span> Diseño para clínicas dentales</li><li><span class="ci-ok">✓</span> Creado por un dentista</li><li><span class="ci-ok">✓</span> Desde $200.000 CLP pago único</li><li><span class="ci-ok">✓</span> Entrega en 2-3 días</li><li><span class="ci-ok">✓</span> 2 rondas de correcciones</li></ul></div></div></section>
-    <!-- CASOS / PORTFOLIO -->
-    <section class="cases" id="casos" style="padding: 80px 48px;">
-        <p class="proof-label" style="text-align:center;">Casos reales</p>
-        <h2 style="font-family:'Fraunces',serif; font-size:clamp(24px,3.5vw,34px); font-weight:700; text-align:center; margin-bottom:8px; line-height:1.2;">Un sitio que ya está al aire</h2>
-        <p style="text-align:center; font-size:13px; color:var(--gray); font-weight:300; max-width:480px; margin:0 auto 36px;">No es un mockup ni una plantilla de demostración. Es una clínica dental chilena recibiendo pacientes hoy.</p>
-        <a href="https://clinicadentalaleman.cl" target="_blank" rel="noopener" style="display:block; max-width:720px; margin:0 auto; text-decoration:none; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--bg-card); transition:all 0.3s;">
-            <img src="assets/casos-aleman.jpg" alt="Sitio web de Clínica Dental Alemán creado por DentalReady" style="width:100%; display:block; border-bottom:1px solid var(--line);">
-            <div style="display:flex; justify-content:space-between; align-items:center; gap:16px; padding:20px 24px;">
-                <div style="text-align:left;">
-                    <div style="font-family:'Fraunces',serif; font-size:16px; font-weight:600; color:var(--white);">Clínica Dental Alemán</div>
-                    <div style="font-size:12px; color:var(--gray); font-weight:300;">clinicadentalaleman.cl</div>
-                </div>
-                <span style="display:inline-flex; align-items:center; gap:6px; padding:10px 20px; background:var(--gold); color:var(--bg); font-size:13px; font-weight:600; border-radius:8px; white-space:nowrap;">Ver sitio en vivo →</span>
-            </div>
-        </a>
-    </section>
     <!-- TESTIMONIOS REALES (Google) -->
-    <section class="testimonials" id="testimonios" style="padding: 80px 48px; background: var(--bg-card);">
+    <section class="testimonials" id="testimonios">
         <p class="proof-label" style="text-align:center;">Lo que dicen los clientes</p>
         <h2 style="font-family:'Fraunces',serif; font-size:clamp(24px,3.5vw,34px); font-weight:700; text-align:center; margin-bottom:36px; line-height:1.2;">Reseñas reales en Google</h2>
-        <div style="max-width:640px; margin:0 auto; display:flex; flex-direction:column; gap:16px;">
-            <div style="background:var(--bg); border:1px solid var(--line); border-radius:12px; padding:28px 30px; text-align:left;">
-                <div style="color:var(--gold); font-size:15px; letter-spacing:3px; margin-bottom:14px;">★★★★★</div>
-                <p style="font-family:'DM Sans',sans-serif; font-size:14px; font-weight:300; font-style:italic; line-height:1.7; color:rgba(240,245,243,0.8); margin-bottom:16px;">"Bruno desarrolló el sitio web de nuestra clínica desde cero. El proceso fue ordenado y claro en cada etapa, y el resultado superó lo que esperaba: un sitio profesional y rápido, a la altura de la clínica. Lo que más valoro es que entiende el rubro dental por dentro, porque es dentista. Cada decisión, desde la estructura hasta los textos, tiene sentido clínico, no solo estético. Desde la entrega los pacientes llegan mejor informados y agendan más fácil. Lo recomiendo totalmente."</p>
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
-                    <p style="font-size:12px; color:var(--gray);"><span style="color:var(--white); font-weight:500;">Fernando Beltrán</span> · Director, Clínica Dental Alemán</p>
-                    <span style="font-size:10px; color:var(--gray); white-space:nowrap;">✔ Verificado en Google</span>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>"Bruno desarrolló el sitio web de nuestra clínica desde cero. El proceso fue ordenado y claro en cada etapa, y el resultado superó lo que esperaba: un sitio profesional y rápido, a la altura de la clínica. Lo que más valoro es que entiende el rubro dental por dentro, porque es dentista. Cada decisión, desde la estructura hasta los textos, tiene sentido clínico, no solo estético. Desde la entrega los pacientes llegan mejor informados y agendan más fácil. Lo recomiendo totalmente."</p>
+                <div class="review-foot">
+                    <p class="review-author"><b>Fernando Beltrán</b> · Director, Clínica Dental Alemán</p>
+                    <span class="review-verified">✔ Verificado en Google</span>
                 </div>
             </div>
-            <div style="background:var(--bg); border:1px solid var(--line); border-radius:12px; padding:28px 30px; text-align:left;">
-                <div style="color:var(--gold); font-size:15px; letter-spacing:3px; margin-bottom:14px;">★★★★★</div>
-                <p style="font-family:'DM Sans',sans-serif; font-size:14px; font-weight:300; font-style:italic; line-height:1.7; color:rgba(240,245,243,0.8); margin-bottom:16px;">"Me encantó la atención, siempre estuvieron ahí ante cualquier duda. Nos ha servido un montón para visibilizar la clínica. Recomendadísimos."</p>
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
-                    <p style="font-size:12px; color:var(--gray);"><span style="color:var(--white); font-weight:500;">Camila Besa Concha</span></p>
-                    <span style="font-size:10px; color:var(--gray); white-space:nowrap;">✔ Verificado en Google</span>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>"Me encantó la atención, siempre estuvieron ahí ante cualquier duda. Nos ha servido un montón para visibilizar la clínica. Recomendadísimos."</p>
+                <div class="review-foot">
+                    <p class="review-author"><b>Camila Besa Concha</b></p>
+                    <span class="review-verified">✔ Verificado en Google</span>
                 </div>
             </div>
         </div>
