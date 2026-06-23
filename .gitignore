@@ -5,3 +5,6 @@ desktop.ini
 .idea/
 *.swp
 *.swo
+
+# Originales pesados de portadas del blog (se procesan a blog/assets/)
+blog/assets/_incoming/
